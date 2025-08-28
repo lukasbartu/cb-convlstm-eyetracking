@@ -57,9 +57,13 @@ def get_data(data_dir, output_dir,seq, stride):
             filters = tables.Filters(complevel=5, complib='blosc')
             f.create_carray('/', 'vector', obj=extended_data, filters=filters)
 
-data_dir = "/DATA/pupil_st/data_ts_500"
-output_dir_train = "/DATA/pupil_st/data_ts_pro/train/"
-output_dir_val = "/DATA/pupil_st/data_ts_pro/val/"
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+print("ROOT_DIR:", ROOT_DIR)
+
+data_dir = os.path.join(ROOT_DIR, "DATA", "pupil_st", "data_ts_pro")
+output_dir_train = os.path.join(ROOT_DIR, "DATA", "pupil_st", "data_ts_pro", "train")
+output_dir_val = os.path.join(ROOT_DIR, "DATA", "pupil_st", "data_ts_pro", "val")
+
 # Load filenames from the provided lists
 train_filenames = load_filenames('train_files.txt')
 val_filenames = load_filenames('val_files.txt')
